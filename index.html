@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Rohit Singh Rajput - MERN Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+            transition: background 0.3s ease;
+            min-height: 100vh;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+            z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            font-size: clamp(1.2em, 4vw, 1.8em);
+            color: #00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: clamp(0.9em, 2.5vw, 1em);
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #00ffcc;
+        }
+
+        .toggle {
+            width: 40px;
+            height: 20px;
+            background: #fff;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #00ffcc;
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+            transition: 0.3s;
+        }
+
+        body.light .toggle::after {
+            left: 21px;
+        }
+
+        body.light {
+            background: #f0f0f0;
+            color: #0a0a0a;
+        }
+
+        body.light header {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        body.light nav a {
+            color: #0a0a0a;
+        }
+
+        .container {
+            padding: clamp(80px, 15vw, 120px) 20px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: clamp(2em, 8vw, 3.5em);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00ffcc, #ff007a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero .typed {
+            font-size: clamp(1em, 4vw, 1.5em);
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .skills, .projects, .contact {
+            margin: 60px 0;
+        }
+
+        .skills h3, .projects h3, .contact h3 {
+            font-size: clamp(1.5em, 5vw, 2em);
+            margin-bottom: 20px;
+            color: #00ffcc;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: clamp(0.9em, 3vw, 1em);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card h4 {
+            font-size: clamp(1.1em, 3.5vw, 1.3em);
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: clamp(0.85em, 2.5vw, 1em);
+        }
+
+        .project-card a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact a {
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: clamp(0.9em, 3vw, 1.2em);
+            margin: 0 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+            }
+
+            nav {
+                margin-top: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                margin: 10px 10px;
+            }
+
+            .toggle {
+                margin: 10px 0;
+            }
+
+            .skill-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .container {
+                padding: 60px 15px 30px;
+            }
+
+            .skill-card, .project-card {
+                padding: 10px;
+            }
+
+            .contact a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2) {
+            body {
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            nav a, .toggle {
+                -webkit-user-select: none;
+                user-select: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <h1>Rohit Singh Rajput</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <div class="toggle" onclick="toggleDarkMode()"></div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero" id="home">
+            <h2>Welcome to My Portfolio</h2>
+            <p class="typed">I am a <span id="type-effect"></span></p>
+        </section>
+
+        <section class="skills" id="skills">
+            <h3>Skills</h3>
+            <div class="skill-grid">
+                <div class="skill-card">MongoDB</div>
+                <div class="skill-card">Express.js</div>
+                <div class="skill-card">React.js</div>
+                <div class="skill-card">Node.js</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">HTML5</div>
+                <div class="skill-card">CSS3</div>
+                <div class="skill-card">Git</div>
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <h3>Projects</h3>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h4>MediMinds</h4>
+                    <p>A responsive healthcare-themed website built with HTML, CSS, and JavaScript, showcasing modern UI/UX design.</p>
+                    <p><a href="https://codewithrohitrajput.github.io/MediMinds/" target="_blank">Live Demo</a></p>
+                </div>
+                <div class="project-card">
+                    <h4>GenZ Web (Slang)</h4>
+                    <p>A creative web app for an ideathon, featuring GenZ slang and interactive elements, built with React and hosted on Vercel.</p>
+                    <p><a href="https://slangbyrohit.vercel.app/" target="_blank">Live Demo</a></p>
+                </div>
+                <div class="project-card">
+                    <h4>Notes Taking App</h4>
+                    <p>A full-stack note-taking application with CRUD functionality, built using React, Node.js, and deployed on Vercel.</p>
+                    <p><a href="https://notes-app-chi-tawny.vercel.app/" target="_blank">Live Demo</a></p>
+                </div>
+                <div class="project-card">
+                    <h4>Blogify</h4>
+                    <p>A full-stack blogging platform with user authentication and dynamic content (under development, not yet deployed).</p>
+                    <p><em>Coming Soon</em></p>
+                </div>
+                <div class="project-card">
+                    <h4>Todo List</h4>
+                    <p>A full-stack todo list app with real-time updates, built using the MERN stack for efficient task management.</p>
+                    <p><em>Live Demo TBD</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <h3>Contact Me</h3>
+            <p>
+                <a href="mailto:rohitsinghrajput2k24@gmail.com">rohitsinghrajput2k24@gmail.com</a> |
+                <a href="https://github.com/rohitsinghrajput" target="_blank">GitHub</a> |
+                <a href="https://linkedin.com/in/rohit-singh-rajput7" target="_blank">LinkedIn</a> |
+                <a href="https://www.instagram.com/rohit_singh_rajput91/" target="_blank">Instagram</a>
+            </p>
+        </section>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        // Particles.js Initialization
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ffcc" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00ffcc", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 2, direction: "none", random: false, straight: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Typed.js Initialization
+        const typed = new Typed("#type-effect", {
+            strings: ["MERN Stack Developer", "Full-Stack Enthusiast", "Problem Solver"],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle("light");
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
